@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f172a">
-  <meta name="description" content="Professional IT services, networking, Wi-Fi, CCTV, smart security, servers and website development in the Maldives.">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07162f">
+  <meta name="description" content="Professional IT services, networking, Wi-Fi, CCTV, smart security, servers and websites in Maldives.">
   <title>Naskhu IT Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,42 +12,69 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#top"><span class="brand-mark">N</span><span><strong>Naskhu IT Solutions</strong><small>IT services & quotations</small></span></a>
-    <nav class="nav-links"><a href="#services">Services</a><a href="#about">About</a><a href="#quote">Quotation</a><a href="#contact">Contact</a></nav>
-    <div class="header-actions"><button id="themeButton" class="icon-button" type="button" aria-label="Toggle dark mode">☾</button><a class="header-cta" href="#quote">Request Quote</a></div>
-  </header>
+<header class="site-header">
+  <a class="brand" href="#top"><span class="brand-mark">N</span><span><strong>Naskhu IT Solutions</strong><small>Technology made dependable</small></span></a>
+  <nav><a href="#services">Services</a><a href="#process">How it works</a><a href="#quote">Request quote</a></nav>
+  <div class="header-actions"><button id="themeButton" class="icon-btn" type="button" aria-label="Toggle theme">☾</button><a class="header-quote" href="#quote">Get a quote</a></div>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-copy"><span class="hero-badge">PROFESSIONAL IT SERVICES IN MALDIVES</span><h1>Reliable technology for homes and businesses.</h1><p>Networking, Wi-Fi, CCTV, smart security, servers, cloud, websites and ongoing IT support—planned, installed and supported professionally.</p><div class="hero-actions"><a class="primary-button" href="#quote">Request Free Quotation</a><a class="secondary-button" href="https://wa.me/9607988774?text=Hello%2C%20I%20need%20IT%20service%20support." target="_blank" rel="noopener">WhatsApp</a><a class="secondary-button" href="tel:+9607988774">Call Now</a></div></div>
-      <div class="hero-panel"><div><span>🌐</span><strong>Networking</strong></div><div><span>📶</span><strong>Wi-Fi</strong></div><div><span>📹</span><strong>CCTV</strong></div><div><span>🖥️</span><strong>Servers</strong></div></div>
-    </section>
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="kicker">IT SERVICES ACROSS MALDIVES</span>
+      <h1>One contact for your complete IT setup.</h1>
+      <p>From home Wi-Fi and smart locks to business networks, CCTV, servers and websites—request the service you need and receive a clear quotation.</p>
+      <div class="hero-actions"><a class="btn primary" href="#quote">Request quotation</a><a class="btn ghost" href="https://wa.me/9607988774?text=Hello%2C%20I%20need%20IT%20service%20support." target="_blank" rel="noopener">WhatsApp now</a></div>
+      <div class="hero-proof"><span>✓ Residential & business</span><span>✓ Remote & on-site support</span><span>✓ Malé, Hulhumalé & islands</span></div>
+    </div>
+    <div class="hero-dashboard">
+      <div class="dashboard-title"><span>Service desk</span><strong>How can we help?</strong></div>
+      <button class="quick-service" data-service="Office Wi-Fi Installation" data-category="Wi-Fi"><span>📶</span><div><strong>Wi-Fi setup</strong><small>Home, office and guest Wi-Fi</small></div><b>→</b></button>
+      <button class="quick-service" data-service="CCTV Installation" data-category="Security"><span>📹</span><div><strong>CCTV installation</strong><small>Cameras, NVR and mobile viewing</small></div><b>→</b></button>
+      <button class="quick-service" data-service="Smart Door Lock Installation" data-category="Security"><span>🔐</span><div><strong>Smart door locks</strong><small>Install, configure and test</small></div><b>→</b></button>
+      <button class="quick-service" data-service="Business Website Development" data-category="Web & Software"><span>🌍</span><div><strong>Website development</strong><small>Business and service websites</small></div><b>→</b></button>
+    </div>
+  </section>
 
-    <section class="trust-grid"><article><span>⚡</span><div><strong>Fast response</strong><small>Remote and on-site assistance</small></div></article><article><span>🏠</span><div><strong>Home & business</strong><small>Solutions for every environment</small></div></article><article><span>🏝️</span><div><strong>Island-wide support</strong><small>Malé, Hulhumalé and islands</small></div></article><article><span>🛠️</span><div><strong>End-to-end service</strong><small>Design, installation and support</small></div></article></section>
+  <section class="stats"><article><strong>20+</strong><span>IT services</span></article><article><strong>1 form</strong><span>Quick quotation request</span></article><article><strong>WhatsApp</strong><span>Fast direct response</span></article><article><strong>Flexible</strong><span>Home and business support</span></article></section>
 
-    <section id="services" class="section-block"><div class="section-heading"><div><p class="eyebrow">OUR SERVICES</p><h2>Complete IT solutions</h2></div><p>Choose a service and request a quotation directly through WhatsApp.</p></div><div id="categoryChips" class="category-chips"></div><label class="search-box">🔎<input id="searchInput" type="search" placeholder="Search services..." aria-label="Search services"></label><div id="serviceGrid" class="service-grid"></div></section>
+  <section id="services" class="section">
+    <div class="section-head"><div><span class="eyebrow">SERVICES</span><h2>Choose what you need</h2></div><p>Search or filter, then tap Request Quote to preselect a service.</p></div>
+    <div id="categoryChips" class="category-chips"></div>
+    <label class="service-search">⌕<input id="searchInput" type="search" placeholder="Search networking, Wi-Fi, CCTV, server..." aria-label="Search services"></label>
+    <div id="serviceGrid" class="service-grid"></div>
+  </section>
 
-    <section id="about" class="about-section"><div><p class="eyebrow">WHY CHOOSE US</p><h2>Practical solutions built around your needs</h2><p>We support residential customers, offices, shops and growing businesses with reliable, scalable IT infrastructure and responsive technical support.</p></div><div class="about-points"><article><strong>Professional planning</strong><span>Clear recommendations before installation.</span></article><article><strong>Vendor experience</strong><span>Cisco, Huawei, UniFi, Ruckus, MikroTik, Fortinet, Microsoft and more.</span></article><article><strong>Flexible support</strong><span>One-time projects, troubleshooting and annual maintenance.</span></article><article><strong>Transparent quotations</strong><span>Scope, materials and service requirements clearly defined.</span></article></div></section>
+  <section id="process" class="process-section">
+    <div class="section-head"><div><span class="eyebrow">SIMPLE PROCESS</span><h2>From request to completed service</h2></div></div>
+    <div class="process-grid"><article><span>1</span><h3>Send request</h3><p>Select the service and describe the requirement.</p></article><article><span>2</span><h3>Review & quotation</h3><p>Scope, site needs and materials are reviewed.</p></article><article><span>3</span><h3>Confirm schedule</h3><p>Once approved, a suitable visit date is agreed.</p></article><article><span>4</span><h3>Complete service</h3><p>Installation, testing and handover are completed.</p></article></div>
+  </section>
 
-    <section class="brands-section"><p class="eyebrow">TECHNOLOGIES WE SUPPORT</p><div class="brand-list"><span>Cisco</span><span>Huawei</span><span>UniFi</span><span>Ruckus</span><span>MikroTik</span><span>Fortinet</span><span>TP-Link</span><span>Hikvision</span><span>Dahua</span><span>Microsoft</span><span>VMware</span><span>Synology</span></div></section>
-
-    <section id="quote" class="quote-section"><div class="quote-copy"><p class="eyebrow">REQUEST A QUOTATION</p><h2>Tell us what you need</h2><p>Submit your project details and WhatsApp Business will open with a complete quotation request addressed to <strong>+960 7988774</strong>.</p><ul><li>No online payment required</li><li>No product cart or checkout</li><li>Attach site photos directly in WhatsApp</li></ul></div><form id="quoteForm" class="quote-form">
-      <div class="form-row"><label>Full name<input id="customerName" required autocomplete="name" placeholder="Your name"></label><label>Phone<input id="customerPhone" required type="tel" autocomplete="tel" placeholder="7XXXXXX"></label></div>
+  <section id="quote" class="quote-section">
+    <div class="quote-intro"><span class="eyebrow">REQUEST A QUOTATION</span><h2>Tell us about the job</h2><p>The request opens directly in WhatsApp Business to <strong>+960 7988774</strong> with a unique reference number.</p><div class="quote-benefits"><span>✓ No payment required</span><span>✓ Attach photos in WhatsApp</span><span>✓ Preferred date included</span><span>✓ Normal, urgent or emergency</span></div></div>
+    <form id="quoteForm" class="quote-form">
+      <div class="form-title"><strong>Service request</strong><small>Required fields are marked *</small></div>
+      <div class="form-row"><label>Full name *<input id="customerName" required autocomplete="name" placeholder="Your name"></label><label>Phone *<input id="customerPhone" required type="tel" autocomplete="tel" placeholder="7XXXXXX"></label></div>
       <div class="form-row"><label>Company<input id="company" placeholder="Optional"></label><label>Email<input id="email" type="email" autocomplete="email" placeholder="Optional"></label></div>
-      <div class="form-row"><label>Location / Island<input id="location" required placeholder="Malé, Hulhumalé, island..."></label><label>Preferred date<input id="preferredDate" type="date"></label></div>
-      <div class="form-row"><label>Service category<select id="serviceCategory" required></select></label><label>Specific service<select id="specificService" required></select></label></div>
-      <label>Project description<textarea id="projectDescription" rows="5" required placeholder="Describe the work, current issue, number of rooms/devices, site condition, or expected result..."></textarea></label>
-      <div class="form-row"><label>Budget<input id="budget" placeholder="Optional"></label><label>Priority<select id="priority"><option>Normal</option><option>Urgent</option><option>Emergency</option></select></label></div>
-      <button class="submit-button" type="submit">Request Quotation on WhatsApp</button><p class="form-note">After WhatsApp opens, attach any site photos, floor plans or documents in the chat before sending.</p>
-    </form></section>
+      <div class="form-row"><label>Location / Island *<input id="location" required placeholder="Malé, Hulhumalé, island..."></label><label>Preferred date<input id="preferredDate" type="date"></label></div>
+      <div class="form-row"><label>Category *<select id="serviceCategory" required></select></label><label>Service *<select id="specificService" required></select></label></div>
+      <label>Describe the requirement *<textarea id="projectDescription" rows="5" required placeholder="Example: Need Wi-Fi coverage for a three-floor office with around 50 users..."></textarea></label>
+      <div class="form-row"><label>Estimated budget<input id="budget" placeholder="Optional"></label><label>Priority<select id="priority"><option>Normal</option><option>Urgent</option><option>Emergency</option></select></label></div>
+      <label class="save-copy"><input id="saveCopy" type="checkbox" checked> Save a copy of this request on this device</label>
+      <button class="submit-button" type="submit">Send quotation request on WhatsApp</button>
+      <p class="form-note">WhatsApp will open with the complete request. Attach photos, diagrams or documents there before sending.</p>
+    </form>
+  </section>
 
-    <section id="contact" class="contact-section"><div><p class="eyebrow">CONTACT</p><h2>Need help now?</h2><p>Contact us for consultation, troubleshooting, installation or a project quotation.</p></div><div class="contact-actions"><a href="https://wa.me/9607988774" target="_blank" rel="noopener">💬 WhatsApp +960 7988774</a><a href="tel:+9607988774">📞 Call +960 7988774</a></div></section>
-  </main>
+  <section class="brands"><span>Cisco</span><span>Huawei</span><span>UniFi</span><span>Ruckus</span><span>MikroTik</span><span>Fortinet</span><span>Hikvision</span><span>Dahua</span><span>Microsoft</span><span>VMware</span><span>Synology</span></section>
 
-  <footer><div><strong>Naskhu IT Solutions</strong><p>Professional IT services for homes and businesses in the Maldives.</p></div><a href="#quote">Request a quotation</a></footer>
-  <a class="floating-whatsapp" href="https://wa.me/9607988774?text=Hello%2C%20I%20would%20like%20an%20IT%20service%20quotation." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
+  <section class="contact"><div><span class="eyebrow">DIRECT CONTACT</span><h2>Need assistance today?</h2><p>Contact us for troubleshooting, consultation, installation or project planning.</p></div><div><a class="btn primary" href="https://wa.me/9607988774" target="_blank" rel="noopener">WhatsApp +960 7988774</a><a class="btn outline" href="tel:+9607988774">Call +960 7988774</a></div></section>
+</main>
+
+<footer><div><strong>Naskhu IT Solutions</strong><p>Professional IT services for homes and businesses in Maldives.</p></div><div><a href="admin.html">Manage requests</a><a href="#quote">Request quotation</a></div></footer>
+<div class="mobile-actions"><a href="tel:+9607988774">📞 Call</a><a href="#quote">📝 Quote</a><a href="https://wa.me/9607988774" target="_blank" rel="noopener">💬 WhatsApp</a></div>
+<a class="floating-whatsapp" href="https://wa.me/9607988774?text=Hello%2C%20I%20need%20an%20IT%20service%20quotation." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
 </body>
 </html>
