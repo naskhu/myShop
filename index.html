@@ -12,11 +12,7 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     .transfer-panel{display:none;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}
-    .transfer-panel.show{display:block}.transfer-panel p{margin:0 0 10px;color:var(--muted);font-size:.82rem;line-height:1.45}
-    .slip-upload{display:block;padding:14px;border:1px dashed var(--line);border-radius:12px;background:var(--surface);text-align:center;cursor:pointer}
-    .slip-upload input{display:none}.slip-upload strong,.slip-upload span{display:block}.slip-upload span{margin-top:5px;color:var(--muted);font-size:.76rem}
-    .slip-preview{display:none;align-items:center;gap:10px;margin-top:10px}.slip-preview.show{display:flex}.slip-preview img{width:58px;height:72px;border-radius:8px;object-fit:cover;border:1px solid var(--line)}
-    .slip-preview div{min-width:0}.slip-preview strong,.slip-preview small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.slip-preview small{margin-top:4px;color:var(--muted)}
+    .transfer-panel.show{display:block}.transfer-panel strong{display:block;margin-bottom:6px}.transfer-panel p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.5}
   </style>
 </head>
 <body>
@@ -36,7 +32,7 @@
     <label>Delivery area<select id="deliveryArea"><option value="Pickup" data-fee="0">Store pickup — Free</option><option value="Male'" data-fee="30">Male’ — MVR 30</option><option value="Hulhumale'" data-fee="50">Hulhumale’ — MVR 50</option><option value="Villimale'" data-fee="60">Villimale’ — MVR 60</option><option value="Other island" data-fee="0">Other island — Confirm fee</option></select></label>
     <label>Delivery address<textarea id="customerAddress" rows="3" placeholder="Street, house, apartment or island details"></textarea></label>
     <label>Payment method<select id="paymentMethod"><option value="Cash on delivery">Cash on delivery</option><option value="Bank transfer">Bank transfer</option></select></label>
-    <div id="transferPanel" class="transfer-panel"><p>Upload the bank-transfer receipt. On supported phones, the receipt and order details can be shared together to WhatsApp.</p><label class="slip-upload"><input id="transferSlip" type="file" accept="image/*,.pdf"><strong>📎 Choose transfer slip</strong><span>Screenshot, photo or PDF</span></label><div id="slipPreview" class="slip-preview"><img id="slipPreviewImage" alt="Transfer slip preview"><div><strong id="slipFileName"></strong><small id="slipFileSize"></small></div></div></div>
+    <div id="transferPanel" class="transfer-panel"><strong>📎 Bank transfer receipt required</strong><p>The order will open directly in WhatsApp Business. Tap the attachment icon in the chat, choose your transfer-slip screenshot or PDF, then send the order.</p></div>
     <label>Order note<textarea id="orderNote" rows="2" placeholder="Colour, size or other instructions"></textarea></label>
   </div><div class="cart-summary"><div><span>Subtotal</span><strong id="subtotal">MVR 0</strong></div><div><span>Delivery</span><strong id="deliveryTotal">MVR 0</strong></div><div class="total-row"><span>Total</span><strong id="total">MVR 0</strong></div></div><button id="checkoutButton" class="checkout-button" type="button">Send order on WhatsApp</button><p id="checkoutNote" class="checkout-note">Your order is confirmed only after the store replies.</p></div></aside>
   <a class="floating-whatsapp" href="https://wa.me/9607988774?text=Hello%2C%20I%20need%20help%20with%20a%20product." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a><div id="toast" class="toast" role="status" aria-live="polite"></div><script src="app.js"></script>
