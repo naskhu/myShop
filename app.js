@@ -94,8 +94,10 @@ function closeCart() { cartDrawer.classList.remove("open"); cartDrawer.setAttrib
 function updatePaymentUI() {
   const isTransfer = paymentMethod.value === "Bank transfer";
   transferPanel.classList.toggle("show", isTransfer);
-  $("#checkoutButton").textContent = isTransfer ? "Share slip & order" : "Send order on WhatsApp";
-  $("#checkoutNote").textContent = isTransfer ? "Select WhatsApp in the share sheet and send it to +960 7988774." : "Your order is confirmed only after the store replies.";
+  $("#checkoutButton").textContent = "Send order on WhatsApp";
+  $("#checkoutNote").textContent = isTransfer
+    ? "WhatsApp Business will open directly. Attach your selected transfer slip in the chat before sending."
+    : "Your order is confirmed only after the store replies.";
 }
 
 function previewSlip() {
@@ -121,10 +123,10 @@ function buildOrderMessage(details) {
   const fee = deliveryFee();
   const orderNumber = `NS-${Date.now().toString().slice(-6)}`;
   const lines = details.map((item, index) => `${index + 1}. ${item.name} × ${item.quantity} — ${money(item.price * item.quantity)}`);
-  return [`*New Naskhu Store Order — ${orderNumber}*`, "", `*Customer:* ${name}`, `*Phone:* ${phone}`, `*Delivery:* ${area}`, `*Address:* ${address || "Pickup"}`, `*Payment:* ${payment}`, payment === "Bank transfer" ? "*Transfer slip:* Attached with this message" : "", "", "*Items:*", ...lines, "", `*Subtotal:* ${money(subtotalValue)}`, `*Delivery fee:* ${area === "Other island" ? "Please confirm" : money(fee)}`, `*Estimated total:* ${money(subtotalValue + fee)}`, note ? `*Note:* ${note}` : "", "", "Please confirm availability and final total."].filter(Boolean).join("\n");
+  return [`*New Naskhu Store Order — ${orderNumber}*`, "", `*Customer:* ${name}`, `*Phone:* ${phone}`, `*Delivery:* ${area}`, `*Address:* ${address || "Pickup"}`, `*Payment:* ${payment}`, payment === "Bank transfer" ? "*Transfer slip:* Customer will attach it in this chat" : "", "", "*Items:*", ...lines, "", `*Subtotal:* ${money(subtotalValue)}`, `*Delivery fee:* ${area === "Other island" ? "Please confirm" : money(fee)}`, `*Estimated total:* ${money(subtotalValue + fee)}`, note ? `*Note:* ${note}` : "", "", payment === "Bank transfer" ? "Please attach the bank transfer slip before sending this message." : "Please confirm availability and final total."].filter(Boolean).join("\n");
 }
 
-async function checkout() {
+function checkout() {
   const details = cartDetails();
   if (!details.length) return showToast("Your cart is empty");
   const name = $("#customerName").value.trim();
@@ -132,25 +134,10 @@ async function checkout() {
   const address = $("#customerAddress").value.trim();
   const area = $("#deliveryArea").value;
   if (!name || !phone || (!address && area !== "Pickup")) return showToast("Enter your contact and delivery details");
+  if (paymentMethod.value === "Bank transfer" && !transferSlip.files[0]) return showToast("Please choose your bank transfer slip");
 
   const message = buildOrderMessage(details);
-  if (paymentMethod.value === "Bank transfer") {
-    const file = transferSlip.files[0];
-    if (!file) return showToast("Please choose your bank transfer slip");
-    const shareData = { title: "Naskhu Store Order", text: message, files: [file] };
-    if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
-      try {
-        await navigator.share(shareData);
-        return;
-      } catch (error) {
-        if (error.name === "AbortError") return;
-      }
-    }
-    showToast("WhatsApp cannot receive the file automatically here. Attach the selected slip after WhatsApp opens.");
-    setTimeout(() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message + "\n\nPlease attach the transfer slip before sending.")}`, "_blank", "noopener,noreferrer"), 900);
-    return;
-  }
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+  window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
 productGrid.addEventListener("click", event => { const add = event.target.closest("[data-add]"); const wish = event.target.closest("[data-wish]"); if (add) addToCart(Number(add.dataset.add)); if (wish) toggleWishlist(Number(wish.dataset.wish)); });
