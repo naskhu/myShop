@@ -34,7 +34,6 @@ const sortSelect = $("#sortSelect");
 const toast = $("#toast");
 const paymentMethod = $("#paymentMethod");
 const transferPanel = $("#transferPanel");
-const transferSlip = $("#transferSlip");
 
 const money = value => `${CURRENCY} ${Number(value).toLocaleString("en-US")}`;
 const productById = id => products.find(product => product.id === id);
@@ -96,20 +95,8 @@ function updatePaymentUI() {
   transferPanel.classList.toggle("show", isTransfer);
   $("#checkoutButton").textContent = "Send order on WhatsApp";
   $("#checkoutNote").textContent = isTransfer
-    ? "WhatsApp Business will open directly. Attach your selected transfer slip in the chat before sending."
+    ? "WhatsApp Business will open directly. Attach the bank-transfer receipt in the chat before sending."
     : "Your order is confirmed only after the store replies.";
-}
-
-function previewSlip() {
-  const file = transferSlip.files[0];
-  const preview = $("#slipPreview");
-  if (!file) { preview.classList.remove("show"); return; }
-  $("#slipFileName").textContent = file.name;
-  $("#slipFileSize").textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
-  const image = $("#slipPreviewImage");
-  if (file.type.startsWith("image/")) { image.src = URL.createObjectURL(file); image.style.display = "block"; }
-  else { image.removeAttribute("src"); image.style.display = "none"; }
-  preview.classList.add("show");
 }
 
 function buildOrderMessage(details) {
@@ -123,7 +110,7 @@ function buildOrderMessage(details) {
   const fee = deliveryFee();
   const orderNumber = `NS-${Date.now().toString().slice(-6)}`;
   const lines = details.map((item, index) => `${index + 1}. ${item.name} × ${item.quantity} — ${money(item.price * item.quantity)}`);
-  return [`*New Naskhu Store Order — ${orderNumber}*`, "", `*Customer:* ${name}`, `*Phone:* ${phone}`, `*Delivery:* ${area}`, `*Address:* ${address || "Pickup"}`, `*Payment:* ${payment}`, payment === "Bank transfer" ? "*Transfer slip:* Customer will attach it in this chat" : "", "", "*Items:*", ...lines, "", `*Subtotal:* ${money(subtotalValue)}`, `*Delivery fee:* ${area === "Other island" ? "Please confirm" : money(fee)}`, `*Estimated total:* ${money(subtotalValue + fee)}`, note ? `*Note:* ${note}` : "", "", payment === "Bank transfer" ? "Please attach the bank transfer slip before sending this message." : "Please confirm availability and final total."].filter(Boolean).join("\n");
+  return [`*New Naskhu Store Order — ${orderNumber}*`, "", `*Customer:* ${name}`, `*Phone:* ${phone}`, `*Delivery:* ${area}`, `*Address:* ${address || "Pickup"}`, `*Payment:* ${payment}`, payment === "Bank transfer" ? "*Transfer slip:* Customer must attach it in this chat" : "", "", "*Items:*", ...lines, "", `*Subtotal:* ${money(subtotalValue)}`, `*Delivery fee:* ${area === "Other island" ? "Please confirm" : money(fee)}`, `*Estimated total:* ${money(subtotalValue + fee)}`, note ? `*Note:* ${note}` : "", "", payment === "Bank transfer" ? "Please attach the bank-transfer receipt before sending this message." : "Please confirm availability and final total."].filter(Boolean).join("\n");
 }
 
 function checkout() {
@@ -134,8 +121,6 @@ function checkout() {
   const address = $("#customerAddress").value.trim();
   const area = $("#deliveryArea").value;
   if (!name || !phone || (!address && area !== "Pickup")) return showToast("Enter your contact and delivery details");
-  if (paymentMethod.value === "Bank transfer" && !transferSlip.files[0]) return showToast("Please choose your bank transfer slip");
-
   const message = buildOrderMessage(details);
   window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
@@ -148,7 +133,6 @@ document.querySelectorAll("[data-close-cart]").forEach(element => element.addEve
 $("#checkoutButton").addEventListener("click", checkout);
 $("#deliveryArea").addEventListener("change", renderCart);
 paymentMethod.addEventListener("change", updatePaymentUI);
-transferSlip.addEventListener("change", previewSlip);
 searchInput.addEventListener("input", renderProducts);
 sortSelect.addEventListener("change", renderProducts);
 $("#wishlistButton").addEventListener("click", () => { wishlistOnly = !wishlistOnly; activeCategory = "All"; renderCategories(); renderProducts(); showToast(wishlistOnly ? "Showing wishlist" : "Showing all products"); });
