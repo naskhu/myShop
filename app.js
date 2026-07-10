@@ -32,6 +32,9 @@ const cartItems = $("#cartItems");
 const searchInput = $("#searchInput");
 const sortSelect = $("#sortSelect");
 const toast = $("#toast");
+const paymentMethod = $("#paymentMethod");
+const transferPanel = $("#transferPanel");
+const transferSlip = $("#transferSlip");
 
 const money = value => `${CURRENCY} ${Number(value).toLocaleString("en-US")}`;
 const productById = id => products.find(product => product.id === id);
@@ -42,7 +45,7 @@ function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => toast.classList.remove("show"), 1800);
+  showToast.timer = setTimeout(() => toast.classList.remove("show"), 2200);
 }
 
 function renderCategories() {
@@ -65,11 +68,7 @@ function renderProducts() {
   }).join("") : `<div class="empty-state"><span>🔍</span><h3>No products found</h3><p>Try another search or category.</p></div>`;
 }
 
-function addToCart(id) {
-  const existing = cart.find(item => item.id === id);
-  existing ? existing.quantity += 1 : cart.push({ id, quantity: 1 });
-  saveCart(); renderCart(); showToast(`${productById(id).name} added`);
-}
+function addToCart(id) { const existing = cart.find(item => item.id === id); existing ? existing.quantity += 1 : cart.push({ id, quantity: 1 }); saveCart(); renderCart(); showToast(`${productById(id).name} added`); }
 function updateQuantity(id, amount) { const item = cart.find(entry => entry.id === id); if (!item) return; item.quantity += amount; if (item.quantity <= 0) cart = cart.filter(entry => entry.id !== id); saveCart(); renderCart(); }
 function removeFromCart(id) { cart = cart.filter(item => item.id !== id); saveCart(); renderCart(); }
 function toggleWishlist(id) { wishlist = wishlist.includes(id) ? wishlist.filter(item => item !== id) : [...wishlist, id]; saveWishlist(); renderProducts(); updateWishlistCount(); }
@@ -92,21 +91,65 @@ function updateWishlistCount() { $("#wishlistCount").textContent = wishlist.leng
 function openCart() { cartDrawer.classList.add("open"); cartDrawer.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; }
 function closeCart() { cartDrawer.classList.remove("open"); cartDrawer.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; }
 
-function checkout() {
+function updatePaymentUI() {
+  const isTransfer = paymentMethod.value === "Bank transfer";
+  transferPanel.classList.toggle("show", isTransfer);
+  $("#checkoutButton").textContent = isTransfer ? "Share slip & order" : "Send order on WhatsApp";
+  $("#checkoutNote").textContent = isTransfer ? "Select WhatsApp in the share sheet and send it to +960 7988774." : "Your order is confirmed only after the store replies.";
+}
+
+function previewSlip() {
+  const file = transferSlip.files[0];
+  const preview = $("#slipPreview");
+  if (!file) { preview.classList.remove("show"); return; }
+  $("#slipFileName").textContent = file.name;
+  $("#slipFileSize").textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB`;
+  const image = $("#slipPreviewImage");
+  if (file.type.startsWith("image/")) { image.src = URL.createObjectURL(file); image.style.display = "block"; }
+  else { image.removeAttribute("src"); image.style.display = "none"; }
+  preview.classList.add("show");
+}
+
+function buildOrderMessage(details) {
+  const name = $("#customerName").value.trim();
+  const phone = $("#customerPhone").value.trim();
+  const address = $("#customerAddress").value.trim();
+  const area = $("#deliveryArea").value;
+  const payment = paymentMethod.value;
+  const note = $("#orderNote").value.trim();
+  const subtotalValue = details.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const fee = deliveryFee();
+  const orderNumber = `NS-${Date.now().toString().slice(-6)}`;
+  const lines = details.map((item, index) => `${index + 1}. ${item.name} × ${item.quantity} — ${money(item.price * item.quantity)}`);
+  return [`*New Naskhu Store Order — ${orderNumber}*`, "", `*Customer:* ${name}`, `*Phone:* ${phone}`, `*Delivery:* ${area}`, `*Address:* ${address || "Pickup"}`, `*Payment:* ${payment}`, payment === "Bank transfer" ? "*Transfer slip:* Attached with this message" : "", "", "*Items:*", ...lines, "", `*Subtotal:* ${money(subtotalValue)}`, `*Delivery fee:* ${area === "Other island" ? "Please confirm" : money(fee)}`, `*Estimated total:* ${money(subtotalValue + fee)}`, note ? `*Note:* ${note}` : "", "", "Please confirm availability and final total."].filter(Boolean).join("\n");
+}
+
+async function checkout() {
   const details = cartDetails();
   if (!details.length) return showToast("Your cart is empty");
   const name = $("#customerName").value.trim();
   const phone = $("#customerPhone").value.trim();
   const address = $("#customerAddress").value.trim();
   const area = $("#deliveryArea").value;
-  const payment = $("#paymentMethod").value;
-  const note = $("#orderNote").value.trim();
   if (!name || !phone || (!address && area !== "Pickup")) return showToast("Enter your contact and delivery details");
-  const subtotalValue = details.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const fee = deliveryFee();
-  const orderNumber = `NS-${Date.now().toString().slice(-6)}`;
-  const lines = details.map((item, index) => `${index + 1}. ${item.name} × ${item.quantity} — ${money(item.price * item.quantity)}`);
-  const message = [`*New Naskhu Store Order — ${orderNumber}*`, "", `*Customer:* ${name}`, `*Phone:* ${phone}`, `*Delivery:* ${area}`, `*Address:* ${address || "Pickup"}`, `*Payment:* ${payment}`, "", "*Items:*", ...lines, "", `*Subtotal:* ${money(subtotalValue)}`, `*Delivery fee:* ${area === "Other island" ? "Please confirm" : money(fee)}`, `*Estimated total:* ${money(subtotalValue + fee)}`, note ? `*Note:* ${note}` : "", "", "Please confirm availability and final total."].filter(Boolean).join("\n");
+
+  const message = buildOrderMessage(details);
+  if (paymentMethod.value === "Bank transfer") {
+    const file = transferSlip.files[0];
+    if (!file) return showToast("Please choose your bank transfer slip");
+    const shareData = { title: "Naskhu Store Order", text: message, files: [file] };
+    if (navigator.share && (!navigator.canShare || navigator.canShare({ files: [file] }))) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (error) {
+        if (error.name === "AbortError") return;
+      }
+    }
+    showToast("WhatsApp cannot receive the file automatically here. Attach the selected slip after WhatsApp opens.");
+    setTimeout(() => window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message + "\n\nPlease attach the transfer slip before sending.")}`, "_blank", "noopener,noreferrer"), 900);
+    return;
+  }
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
 }
 
@@ -117,10 +160,12 @@ $("#cartButton").addEventListener("click", openCart);
 document.querySelectorAll("[data-close-cart]").forEach(element => element.addEventListener("click", closeCart));
 $("#checkoutButton").addEventListener("click", checkout);
 $("#deliveryArea").addEventListener("change", renderCart);
+paymentMethod.addEventListener("change", updatePaymentUI);
+transferSlip.addEventListener("change", previewSlip);
 searchInput.addEventListener("input", renderProducts);
 sortSelect.addEventListener("change", renderProducts);
 $("#wishlistButton").addEventListener("click", () => { wishlistOnly = !wishlistOnly; activeCategory = "All"; renderCategories(); renderProducts(); showToast(wishlistOnly ? "Showing wishlist" : "Showing all products"); });
 $("#themeButton").addEventListener("click", () => { document.body.classList.toggle("dark"); localStorage.setItem("naskhu-shop-theme", document.body.classList.contains("dark") ? "dark" : "light"); });
 document.addEventListener("keydown", event => { if (event.key === "Escape") closeCart(); });
 if (localStorage.getItem("naskhu-shop-theme") === "dark") document.body.classList.add("dark");
-renderCategories(); renderProducts(); renderCart(); updateWishlistCount();
+renderCategories(); renderProducts(); renderCart(); updateWishlistCount(); updatePaymentUI();
