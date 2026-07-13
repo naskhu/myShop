@@ -3,78 +3,167 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#07162f">
-  <meta name="description" content="Professional IT services, networking, Wi-Fi, CCTV, smart security, servers and websites in Maldives.">
-  <title>Naskhu IT Solutions</title>
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="Professional networking, Wi-Fi, CCTV, smart security, server, cloud and website services in the Maldives.">
+  <title>Naskhu IT Solutions — Request IT Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="#top"><span class="brand-mark">N</span><span><strong>Naskhu IT Solutions</strong><small>Technology made dependable</small></span></a>
-  <nav><a href="#services">Services</a><a href="#process">How it works</a><a href="#quote">Request quote</a></nav>
-  <div class="header-actions"><button id="themeButton" class="icon-btn" type="button" aria-label="Toggle theme">☾</button><a class="header-quote" href="#quote">Get a quote</a></div>
-</header>
+  <div class="announcement">
+    <div><span class="status-dot" aria-hidden="true"></span><span>Available for residential and business IT projects</span></div>
+    <a data-contact="whatsapp" target="_blank" rel="noopener">Start a conversation <span aria-hidden="true">→</span></a>
+  </div>
 
-<main id="top">
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="kicker">IT SERVICES ACROSS MALDIVES</span>
-      <h1>One contact for your complete IT setup.</h1>
-      <p>From home Wi-Fi and smart locks to business networks, CCTV, servers and websites—request the service you need and receive a clear quotation.</p>
-      <div class="hero-actions"><a class="btn primary" href="#quote">Request quotation</a><a class="btn ghost" href="https://wa.me/9607988774?text=Hello%2C%20I%20need%20IT%20service%20support." target="_blank" rel="noopener">WhatsApp now</a></div>
-      <div class="hero-proof"><span>✓ Residential & business</span><span>✓ Remote & on-site support</span><span>✓ Malé, Hulhumalé & islands</span></div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Naskhu IT Solutions home">
+      <span class="brand-mark">N</span>
+      <span><strong>Naskhu IT Solutions</strong><small>IT services &amp; project support</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#services">Services</a>
+      <a href="#process">How it works</a>
+      <a href="#why-us">Why us</a>
+    </nav>
+    <div class="header-actions">
+      <button id="themeButton" class="icon-button" type="button" aria-label="Toggle dark mode">☾</button>
+      <button class="button button-small button-dark" type="button" data-open-quote>Request a service</button>
     </div>
-    <div class="hero-dashboard">
-      <div class="dashboard-title"><span>Service desk</span><strong>How can we help?</strong></div>
-      <button class="quick-service" data-service="Office Wi-Fi Installation" data-category="Wi-Fi"><span>📶</span><div><strong>Wi-Fi setup</strong><small>Home, office and guest Wi-Fi</small></div><b>→</b></button>
-      <button class="quick-service" data-service="CCTV Installation" data-category="Security"><span>📹</span><div><strong>CCTV installation</strong><small>Cameras, NVR and mobile viewing</small></div><b>→</b></button>
-      <button class="quick-service" data-service="Smart Door Lock Installation" data-category="Security"><span>🔐</span><div><strong>Smart door locks</strong><small>Install, configure and test</small></div><b>→</b></button>
-      <button class="quick-service" data-service="Business Website Development" data-category="Web & Software"><span>🌍</span><div><strong>Website development</strong><small>Business and service websites</small></div><b>→</b></button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-content">
+        <span class="hero-label"><span></span> Professional IT services in the Maldives</span>
+        <h1>Technology support without the complication.</h1>
+        <p>Request networking, Wi-Fi, CCTV, smart security, server, cloud or website services in a few simple steps. Your request goes directly to WhatsApp for a fast response.</p>
+        <div class="hero-actions">
+          <button class="button button-primary" type="button" data-open-quote>Request a free quotation</button>
+          <a class="button button-glass" data-contact="whatsapp" target="_blank" rel="noopener">Message on WhatsApp</a>
+        </div>
+        <div class="hero-trust">
+          <span>Home &amp; business</span>
+          <span>Remote &amp; on-site</span>
+          <span>Malé &amp; island support</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Service request preview">
+        <div class="visual-toolbar"><span>Service desk</span><span class="live-pill"><i></i> Available</span></div>
+        <div class="visual-heading"><small>SELECT A SERVICE</small><strong>What can we help you with?</strong></div>
+        <div class="visual-service-grid">
+          <button type="button" data-quick-service data-category="Wi-Fi" data-service="Office Wi-Fi Installation"><span data-icon="wifi"></span><b>Wi-Fi setup</b><small>Coverage &amp; installation</small></button>
+          <button type="button" data-quick-service data-category="Security" data-service="CCTV Installation"><span data-icon="camera"></span><b>CCTV</b><small>Camera systems</small></button>
+          <button type="button" data-quick-service data-category="Networking" data-service="Network Design & Installation"><span data-icon="network"></span><b>Networking</b><small>LAN &amp; infrastructure</small></button>
+          <button type="button" data-quick-service data-category="Web & Software" data-service="Business Website Development"><span data-icon="globe"></span><b>Websites</b><small>Design &amp; development</small></button>
+        </div>
+        <button class="visual-request" type="button" data-open-quote><span>Start a service request</span><b>Continue →</b></button>
+      </div>
+    </section>
+
+    <section class="quick-access" aria-label="Popular services">
+      <div class="quick-title"><small>QUICK ACCESS</small><strong>Popular requests</strong></div>
+      <button type="button" data-quick-service data-category="Wi-Fi" data-service="Home Wi-Fi Setup"><span data-icon="wifi"></span><div><b>Home Wi-Fi</b><small>Improve coverage</small></div><i>→</i></button>
+      <button type="button" data-quick-service data-category="Security" data-service="Smart Door Lock Installation"><span data-icon="lock"></span><div><b>Smart door lock</b><small>Install &amp; configure</small></div><i>→</i></button>
+      <button type="button" data-quick-service data-category="Security" data-service="Baby Monitor Setup"><span data-icon="baby"></span><div><b>Baby monitor</b><small>Safe remote viewing</small></div><i>→</i></button>
+      <button type="button" data-quick-service data-category="IT Support" data-service="Remote & On-site Support"><span data-icon="support"></span><div><b>IT support</b><small>Remote or on-site</small></div><i>→</i></button>
+    </section>
+
+    <section id="services" class="section services-section">
+      <div class="section-heading">
+        <div><span class="eyebrow">SERVICES</span><h2>Everything you need, in one place.</h2></div>
+        <p>Select a service to open a short quotation form with the correct category already chosen.</p>
+      </div>
+      <div class="service-tools">
+        <div id="categoryChips" class="category-chips" aria-label="Service categories"></div>
+        <label class="search-field"><span data-icon="search"></span><input id="searchInput" type="search" placeholder="Search services" aria-label="Search services"></label>
+      </div>
+      <div id="serviceGrid" class="service-grid"></div>
+    </section>
+
+    <section id="process" class="process-section">
+      <div class="section-heading centered"><div><span class="eyebrow">HOW IT WORKS</span><h2>A clear path from request to completion.</h2></div></div>
+      <div class="process-grid">
+        <article><span>01</span><div><h3>Choose a service</h3><p>Select the service that best matches your requirement.</p></div></article>
+        <article><span>02</span><div><h3>Send the details</h3><p>Add your location, description and preferred date.</p></div></article>
+        <article><span>03</span><div><h3>Review the quotation</h3><p>The scope, equipment and service cost are confirmed.</p></div></article>
+        <article><span>04</span><div><h3>Schedule the work</h3><p>After approval, the service visit is arranged and completed.</p></div></article>
+      </div>
+    </section>
+
+    <section id="why-us" class="why-section">
+      <div class="why-copy">
+        <span class="eyebrow">WHY CHOOSE US</span>
+        <h2>Practical IT solutions designed around your site.</h2>
+        <p>From a single smart device at home to complete office infrastructure, each request is reviewed based on the actual environment and business need.</p>
+        <button class="button button-primary" type="button" data-open-quote>Discuss your requirement</button>
+      </div>
+      <div class="why-grid">
+        <article><span data-icon="plan"></span><h3>Clear planning</h3><p>Scope and requirements are reviewed before work begins.</p></article>
+        <article><span data-icon="tools"></span><h3>End-to-end service</h3><p>Design, installation, configuration, testing and support.</p></article>
+        <article><span data-icon="shield"></span><h3>Reliable setup</h3><p>Secure configurations and suitable equipment recommendations.</p></article>
+        <article><span data-icon="calendar"></span><h3>Easy scheduling</h3><p>Confirmed work can be scheduled around your availability.</p></article>
+      </div>
+    </section>
+
+    <section class="brands-section">
+      <span class="eyebrow">TECHNOLOGIES WE SUPPORT</span>
+      <div><span>Cisco</span><span>Huawei</span><span>UniFi</span><span>Ruckus</span><span>MikroTik</span><span>Fortinet</span><span>Hikvision</span><span>Dahua</span><span>Microsoft</span><span>VMware</span><span>Synology</span></div>
+    </section>
+
+    <section class="final-cta">
+      <div><span class="eyebrow">GET STARTED</span><h2>Have an IT requirement?</h2><p>Send the details and receive a quotation or service recommendation.</p></div>
+      <div><button class="button button-light" type="button" data-open-quote>Request a service</button><a class="button button-outline-light" data-contact="whatsapp" target="_blank" rel="noopener">WhatsApp us</a></div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top"><span class="brand-mark">N</span><span><strong>Naskhu IT Solutions</strong><small>Professional IT services</small></span></a>
+    <p>Networking, Wi-Fi, security, servers, cloud, websites and technical support.</p>
+    <div><a href="#services">Services</a><button type="button" data-open-quote>Request quotation</button></div>
+  </footer>
+
+  <div class="mobile-dock" aria-label="Quick actions">
+    <a href="#services"><span data-icon="grid"></span><small>Services</small></a>
+    <button type="button" data-open-quote><span data-icon="file"></span><small>Request</small></button>
+    <a data-contact="whatsapp" target="_blank" rel="noopener"><span data-icon="message"></span><small>WhatsApp</small></a>
+  </div>
+
+  <aside id="quoteDrawer" class="quote-drawer" aria-hidden="true">
+    <button class="drawer-backdrop" type="button" data-close-quote aria-label="Close quotation form"></button>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+      <div class="drawer-header">
+        <div><span class="eyebrow">SERVICE REQUEST</span><h2 id="quoteTitle">Request a quotation</h2></div>
+        <button class="drawer-close" type="button" data-close-quote aria-label="Close">×</button>
+      </div>
+      <div class="form-steps" aria-hidden="true"><span class="active">1</span><i></i><span>2</span><i></i><span>3</span></div>
+      <form id="quoteForm" class="quote-form">
+        <section>
+          <div class="form-section-title"><span>1</span><div><strong>Your details</strong><small>How we can contact you</small></div></div>
+          <div class="form-row"><label>Full name *<input id="customerName" required autocomplete="name" placeholder="Your name"></label><label>Phone *<input id="customerPhone" required type="tel" inputmode="tel" autocomplete="tel" placeholder="7XXXXXX"></label></div>
+          <div class="form-row"><label>Company<input id="company" placeholder="Optional"></label><label>Email<input id="email" type="email" autocomplete="email" placeholder="Optional"></label></div>
+          <label>Location / Island *<input id="location" required placeholder="Malé, Hulhumalé, island..."></label>
+        </section>
+        <section>
+          <div class="form-section-title"><span>2</span><div><strong>Select the service</strong><small>Choose the closest match</small></div></div>
+          <div class="form-row"><label>Category *<select id="serviceCategory" required></select></label><label>Service *<select id="specificService" required></select></label></div>
+          <div class="form-row"><label>Preferred date<input id="preferredDate" type="date"></label><label>Priority<select id="priority"><option>Normal</option><option>Urgent</option><option>Emergency</option></select></label></div>
+        </section>
+        <section>
+          <div class="form-section-title"><span>3</span><div><strong>Describe the work</strong><small>More detail helps us quote accurately</small></div></div>
+          <label>Requirement *<textarea id="projectDescription" rows="5" required placeholder="Describe the issue, site, number of rooms or devices, and the expected result..."></textarea></label>
+          <label>Estimated budget<input id="budget" placeholder="Optional"></label>
+          <label class="check-field"><input id="saveCopy" type="checkbox" checked><span>Save a copy of this request on this device</span></label>
+        </section>
+        <button class="submit-button" type="submit"><span>Continue to WhatsApp</span><b>→</b></button>
+        <p class="form-note">The request opens in WhatsApp with a reference number. Attach any photos or documents there before sending.</p>
+      </form>
     </div>
-  </section>
+  </aside>
 
-  <section class="stats"><article><strong>20+</strong><span>IT services</span></article><article><strong>1 form</strong><span>Quick quotation request</span></article><article><strong>WhatsApp</strong><span>Fast direct response</span></article><article><strong>Flexible</strong><span>Home and business support</span></article></section>
-
-  <section id="services" class="section">
-    <div class="section-head"><div><span class="eyebrow">SERVICES</span><h2>Choose what you need</h2></div><p>Search or filter, then tap Request Quote to preselect a service.</p></div>
-    <div id="categoryChips" class="category-chips"></div>
-    <label class="service-search">⌕<input id="searchInput" type="search" placeholder="Search networking, Wi-Fi, CCTV, server..." aria-label="Search services"></label>
-    <div id="serviceGrid" class="service-grid"></div>
-  </section>
-
-  <section id="process" class="process-section">
-    <div class="section-head"><div><span class="eyebrow">SIMPLE PROCESS</span><h2>From request to completed service</h2></div></div>
-    <div class="process-grid"><article><span>1</span><h3>Send request</h3><p>Select the service and describe the requirement.</p></article><article><span>2</span><h3>Review & quotation</h3><p>Scope, site needs and materials are reviewed.</p></article><article><span>3</span><h3>Confirm schedule</h3><p>Once approved, a suitable visit date is agreed.</p></article><article><span>4</span><h3>Complete service</h3><p>Installation, testing and handover are completed.</p></article></div>
-  </section>
-
-  <section id="quote" class="quote-section">
-    <div class="quote-intro"><span class="eyebrow">REQUEST A QUOTATION</span><h2>Tell us about the job</h2><p>The request opens directly in WhatsApp Business to <strong>+960 7988774</strong> with a unique reference number.</p><div class="quote-benefits"><span>✓ No payment required</span><span>✓ Attach photos in WhatsApp</span><span>✓ Preferred date included</span><span>✓ Normal, urgent or emergency</span></div></div>
-    <form id="quoteForm" class="quote-form">
-      <div class="form-title"><strong>Service request</strong><small>Required fields are marked *</small></div>
-      <div class="form-row"><label>Full name *<input id="customerName" required autocomplete="name" placeholder="Your name"></label><label>Phone *<input id="customerPhone" required type="tel" autocomplete="tel" placeholder="7XXXXXX"></label></div>
-      <div class="form-row"><label>Company<input id="company" placeholder="Optional"></label><label>Email<input id="email" type="email" autocomplete="email" placeholder="Optional"></label></div>
-      <div class="form-row"><label>Location / Island *<input id="location" required placeholder="Malé, Hulhumalé, island..."></label><label>Preferred date<input id="preferredDate" type="date"></label></div>
-      <div class="form-row"><label>Category *<select id="serviceCategory" required></select></label><label>Service *<select id="specificService" required></select></label></div>
-      <label>Describe the requirement *<textarea id="projectDescription" rows="5" required placeholder="Example: Need Wi-Fi coverage for a three-floor office with around 50 users..."></textarea></label>
-      <div class="form-row"><label>Estimated budget<input id="budget" placeholder="Optional"></label><label>Priority<select id="priority"><option>Normal</option><option>Urgent</option><option>Emergency</option></select></label></div>
-      <label class="save-copy"><input id="saveCopy" type="checkbox" checked> Save a copy of this request on this device</label>
-      <button class="submit-button" type="submit">Send quotation request on WhatsApp</button>
-      <p class="form-note">WhatsApp will open with the complete request. Attach photos, diagrams or documents there before sending.</p>
-    </form>
-  </section>
-
-  <section class="brands"><span>Cisco</span><span>Huawei</span><span>UniFi</span><span>Ruckus</span><span>MikroTik</span><span>Fortinet</span><span>Hikvision</span><span>Dahua</span><span>Microsoft</span><span>VMware</span><span>Synology</span></section>
-
-  <section class="contact"><div><span class="eyebrow">DIRECT CONTACT</span><h2>Need assistance today?</h2><p>Contact us for troubleshooting, consultation, installation or project planning.</p></div><div><a class="btn primary" href="https://wa.me/9607988774" target="_blank" rel="noopener">WhatsApp +960 7988774</a><a class="btn outline" href="tel:+9607988774">Call +960 7988774</a></div></section>
-</main>
-
-<footer><div><strong>Naskhu IT Solutions</strong><p>Professional IT services for homes and businesses in Maldives.</p></div><div><a href="admin.html">Manage requests</a><a href="#quote">Request quotation</a></div></footer>
-<div class="mobile-actions"><a href="tel:+9607988774">📞 Call</a><a href="#quote">📝 Quote</a><a href="https://wa.me/9607988774" target="_blank" rel="noopener">💬 WhatsApp</a></div>
-<a class="floating-whatsapp" href="https://wa.me/9607988774?text=Hello%2C%20I%20need%20an%20IT%20service%20quotation." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script src="app.js"></script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
 </body>
 </html>
